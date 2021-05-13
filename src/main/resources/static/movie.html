@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Details</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="navbar container">
+        <div><a class="logo" onclick="location.href='/movies'">Cinema<marked class="logo-gui">Guide</marked></a></div>
+        <ul>
+          <li><a class="bookmarks" id="bookmarkButton" ><img src="images/icons8-heart-32-2.png" onclick="myBookmarks()" onmouseover="rollover(this)" onmouseout="mouseaway(this)"></a></li>
+          <li><a onclick="location.href='/login'" class="login-register-btn" id="sign-in-btn" onclick="signin_btn_Click()"></a></li>
+        </ul>
+      </nav>
+      <div id="movieDetails"></div>
+        
+    </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    getMovie();
+  </script>
+  </body>
+</html>

@@ -1,0 +1,870 @@
+:root {
+  --primary: #fff;
+  --secondary: rgb(0, 0, 0);
+}
+
+
+/* Reset the Basic HTML Tag Styles */
+p, a, ul, li {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+
+li {
+  list-style-type: none;
+}
+
+
+html {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/Mobile.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+/* Base Styles for the entire website */
+body {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Century Gothic';
+  overflow-x: hidden;
+  font-size: 16px;
+  -moz-font-size:16px;
+  -webkit-font-size:40px;
+}
+
+
+.button {
+  background: none;
+  border: 1px solid #9893D8;
+  border-radius: 20px;
+  color: var(--primary);
+  padding: 6px 12px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-top: 0.8em;
+}
+
+.button:hover {
+  transition: 0.8s ease;
+  color: var(--secondary);
+  background: #9893D8;
+}
+
+
+
+input {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.6em 0.8em;
+  border-radius: 20px;
+  border: 1px solid  #9893D8 ;
+  color: grey;
+}
+
+
+h3 {
+  color: var(--primary);
+  font-weight: lighter;
+  font-size: 1.5em;
+}
+
+h4 {
+  color: var(--primary);
+  font-weight: lighter;
+  font-size: 1.2em;
+ 
+}
+
+p, a, li {
+  color: var(--primary);
+}
+
+a {
+  cursor: pointer;
+}
+
+::placeholder {
+  /* padding-left: 0.8em; */
+  color: grey;
+  opacity: 0.8;
+  
+}
+
+/* --------------------------------------------------------------------------------- */
+/* -------------------------------------- GRID CONTAINER ----------------------------------- */
+.container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+}
+
+.detailsContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5em;
+}
+
+.wrapper {
+  padding: 0.2em;
+  padding-top: 0.8em;
+}
+/* --------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------- */
+/* ---------------------------- NAVIGATION BAR ----------------------------- */
+.navbar div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.navbar ul {
+  padding: 0;
+  grid-column: 2/9;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}  
+
+.navbar li {
+  display: inline-block;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #c5cae9;
+  padding: 0em 0.8em;
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+
+.navbar li a:hover {
+  color: #C39BD3;
+  cursor: pointer;
+}
+
+
+.logo {
+  padding-left: 0.8em;
+  font-size: 0.9em;
+  color:  #fff176 ;
+  cursor: pointer;
+}
+
+.logo-gui {
+  color:   #fff9c4;
+}
+
+.bookmarks {
+  justify-content: flex-end;
+  grid-row: 1;
+}
+
+.line {
+  font-size: 1.3em;
+}
+
+.login-register-btn {
+  background: none;
+  border: none;
+  margin-top: 0;
+  color:  #c5cae9 ;
+  justify-content: flex-end;
+}
+
+
+/* --------------------------------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------------------------------- */
+/* ---------------------------- SEARCH BANNER ----------------------------- */
+.searchBar {
+  padding-top: 2.8em;
+  padding-bottom: 2.8em;
+}
+
+.input-bar {
+  position: relative;
+  color: var(--primary);
+}
+
+
+#searchForm {
+  width: 80%;
+  max-width: 380px;
+  margin: 0.4em auto;
+  text-align: center;
+}
+
+#searchForm input, #searchForm text {
+  width: 90%;
+}
+
+#searchForm text{
+  max-width: 100%;
+  height: 200px;
+}
+
+.searchHeader {
+  text-align: center;
+  color:   #c5cae9;
+}
+#bookmarksHeader {
+  text-align: center;
+  color:   #c5cae9;
+  display: none;
+}
+/* --------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------- */
+/* ----------------------- MOVIES DISPLAY AFTER SEARCH ------------------------ */
+.movieTitle {
+  margin-top: 0.2em;
+  color: var(--primary);
+  font-weight: lighter;
+  font-size: 1.1em;
+  margin-bottom: 0.95em;
+}
+
+.movie {
+  padding-right: 0.2em;
+  padding-bottom: 1.5em;
+  text-align: center;
+  background: rgba(128,128,128, 0.1);
+  grid-column: 1/9;
+}
+
+#add-bookmark-btn-search {
+  padding: 0.5em 2em;
+  background: #C39BD3;
+  color: var(--secondary);
+  cursor: pointer;
+  border-radius: 25px;
+  border: none;
+}
+
+
+#add-bookmark-btn-search:hover {
+  transition: 0.5s;
+  background: #76448A;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+#messageBookmark {
+  color: var(--primary);
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 0px;
+  text-align: center;
+  font-size: 0.9em;
+  transition: all 0.8s ease;
+}
+
+.movie img {
+  padding: 0.6em 0.4em 0.6em 0.4em;
+}
+/* ----------------------- END OF MOVIES DISPLAY AFTER SEARCH ------------------------ */
+/* --------------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --------------------------------------- CSS FOR MOVIE PAGE ------------------------------------------ */
+.title-poster {
+  grid-column: 1/9;
+}
+
+.poster img {
+  padding: 0.6em 0.4em 0.6em 0.4em;
+}
+
+#movieDetails {
+  padding-top: 1em;
+}
+
+.title {
+  margin-top: 0;
+  padding-top: 0.7em;
+  margin-bottom: 0;
+  padding-bottom: 0.7em;
+  color: var(--primary);
+  font-size: 1.3em;
+}
+
+.details-list {
+  text-align: left;
+  padding-left: 0.4em;
+  font-size: 0.9em;
+}
+
+.detail-fields {
+  color:#7986cb;
+  font-weight: bold;
+}
+
+.plot {
+  grid-column: 1/9;
+  grid-row: 2;
+  color: var(--primary);
+  font-size: 0.9em;
+  background: rgba(128,128,128, 0.1);
+  padding: 0.6em 0.4em 0.6em 0.4em;
+}
+
+#add-bookmark-btn {
+  padding: 0.6em 2.3em;
+  background: #C39BD3;
+  color: var(--secondary);
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+}
+
+
+#add-bookmark-btn:hover {
+  transition: 0.5s;
+  background: #76448A;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.details {
+  grid-column: 1/9;
+  text-align: center;
+  background: rgba(128,128,128, 0.1);
+  padding-bottom: 0.6em;
+}
+
+.ratings {
+  grid-column: 1/9;
+  text-align: center;
+  background: rgba(128,128,128, 0.1);
+  padding-bottom: 0.6em;
+}
+
+.awards {
+  grid-column: 1/9;
+  text-align: center;
+  background: rgba(128,128,128, 0.1);
+  padding-bottom: 0.6em;
+}
+
+.awards li {
+  padding: 0 0.4em 0 0.4em;
+}
+
+.cast-creators {
+  grid-column: 1/9;
+  text-align: center;
+  background: rgba(128,128,128, 0.1);
+  padding-bottom: 0.6em;
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --------------------------------------- CSS FOR LOGIN PAGE ------------------------------------------ */
+.registration-login {
+  height: 100%;
+  width: 85%;
+  color: var(--secondary);
+  position: absolute;
+}
+
+.form-box {
+  width: 280px;
+  height: 450px;
+  padding: 0.2em;
+  background-color: #E8DAEF;
+  position: relative;
+  margin: 6% 0.9em 6% 0.9em;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.button-box {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 10px 9px #D7BDE2;
+  border-radius: 20px;
+}
+
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #76448A, #AF7AC5);
+  border-radius: 20px;
+  transition: 0.5s;
+  
+}
+
+.input-group {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+}
+
+.input-field {
+  width: 75%;
+  padding: 8px 0.6em;
+  margin: 5px 0;
+  border: 1px solid grey;
+  outline: none;
+  color: var(--secondary);
+  background: transparent;
+}
+
+.submit-btn {
+  width: 65%;
+  padding: 8px 30px;
+  cursor: pointer;
+  display: block;
+  margin: 2em 1em 0.5em 1.6em;
+  background: #AF7AC5;
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  
+}
+
+.cancel-btn {
+  width: 65%;
+  padding: 8px 30px;
+  cursor: pointer;
+  display: block;
+  margin: 0.5em 1em 0.6em 1.6em;
+  background: #AF7AC5;
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  
+}
+
+.submit-btn:hover {
+  background: #76448A;
+ 
+}
+
+.cancel-btn {
+  background: #D7BDE2;
+}
+
+.cancel-btn:hover {
+  background: #C39BD3;
+ 
+}
+
+#signin {
+  left: 28px;
+  top: 100px;
+}
+
+#signInError {
+  color: var(--secondary);
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding: 0px;
+  text-align: center;
+  font-size: 0.8em;
+  transition: all 0.8s ease;
+  font-weight: lighter;
+}
+
+#registerError {
+  color: var(--secondary);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 0px;
+  text-align: center;
+  font-size: 0.8em;
+  transition: all 0.8s ease;
+  font-weight: lighter;
+}
+
+#register {
+  left: 450px;
+  top: 90px;
+}
+
+
+#error-page {
+  color:  #f5eef8;
+  font-weight: lighter;
+  padding-left: 0.4em;
+}
+
+#error-page a {
+  color:   #c5cae9;
+}
+
+#error-page a:hover {
+  color: #C39BD3;
+}
+
+#add {
+  font-size: 1.2em;
+}
+
+/* --------------------------------------------------------------------------------- */
+/* ----------------------- STYLE FOR TABLETS MEDIA QUERY --------------------------------------- */
+@media screen and (min-width: 768px) {
+
+  html {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/main-background-index.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .navbar ul {
+    padding: 0;
+    grid-column: 6/9;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }  
+
+  .navbar li a {
+    text-decoration: none;
+    color: #c5cae9;
+    padding: 0em 0.8em;
+    font-size: 0.9em;
+    font-weight: lighter;
+  }
+
+  .movie:nth-child(odd) {
+    grid-column: 1/5;
+  }
+
+  .movie:nth-child(even) {
+    grid-column: 5/9;
+  }
+
+  #searchForm {
+    max-width: 550px;
+  }
+
+  .form-box {
+    width: 360px;
+    height: 450px;
+    padding: 0.2em;
+    background-color: #E8DAEF;
+    position: relative;
+    margin: 6% auto;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .input-group {
+    display: block;
+    top: 120px;
+    margin: 1em 0.5em 1em 0.5em;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+  } 
+
+  .registration-login {
+    height: 100%;
+    width: 100%;
+    color: var(--secondary);
+    position: absolute;
+  }
+
+  .button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 10px 9px #D7BDE2;
+    border-radius: 20px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px 0.6em;
+    margin: 5px 0;
+    border: 1px solid grey;
+    outline: none;
+    background: transparent;
+  }
+  
+  .submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+  }
+
+  .cancel-btn {
+    width: 85%;
+    padding: 10px 30px;
+  }
+
+  .submit-btn:hover {
+    background: #76448A;
+   
+  }
+  
+  .cancel-btn {
+    background: #D7BDE2;
+  }
+  
+  .cancel-btn:hover {
+    background: #C39BD3;
+   
+  }
+  
+  #signin {
+    left: 28px;
+  }
+  
+  #register {
+    left: 450px;
+  }
+
+}
+/* ----------------------- END OF STYLE FOR TABLETS --------------------------------------- */
+/* --------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------- */
+/* ----------------------- STYLE FOR LAPTOP MEDIA QUERY --------------------------------------- */
+@media screen and (min-width: 1440px) {
+
+  html {
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('../images/main-background-index.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  body {
+      font-size: 22px;
+  }
+
+  .navbar ul {
+    padding: 0;
+    grid-column: 7/9;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }  
+
+  .navbar li a {
+    text-decoration: none;
+    color: #c5cae9;
+    padding: 0em 0.8em;
+    font-size: 0.9em;
+    font-weight: lighter;
+  }
+
+  .movie:nth-child(4n+1) {
+    grid-column: 1/3;
+  }
+
+  .movie:nth-child(4n+2) {
+    grid-column: 3/5;
+  }
+
+  .movie:nth-child(4n+3) {
+    grid-column: 5/7;
+  }
+
+  .movie:nth-child(4n+4) {
+    grid-column: 7/9;
+  }
+
+  #searchForm {
+    max-width: 750px;
+  }
+
+  .registration-login {
+    height: 100%;
+    width: 100%;
+    color: var(--secondary);
+    position: absolute;
+  }
+
+  .form-box {
+    width: 360px;
+    height: 450px;
+    padding: 0.2em;
+    background-color: #E8DAEF;
+    position: relative;
+    margin: 6% auto;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 10px 9px #D7BDE2;
+    border-radius: 20px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px 0.6em;
+    margin: 5px 0;
+    border: 1px solid grey;
+    outline: none;
+    background: transparent;
+  }
+
+  .input-group {
+    display: block;
+    margin: 5px auto;
+    top: 120px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+  }
+  
+  .submit-btn:hover {
+    background: #76448A;
+   
+  }
+  
+  .cancel-btn {
+    background: #D7BDE2;
+  }
+  
+  .cancel-btn:hover {
+    background: #C39BD3;
+   
+  }
+  
+  #signin {
+    left: 50px;
+  }
+  
+  #register {
+    left: 450px;
+  }
+
+  /* ----------------------------------------------------------------------------------------------------- */
+/* --------------------------------------- CSS FOR MOVIE PAGE ------------------------------------------ */
+
+  .title-poster {
+    grid-column: 1/5;
+  }
+
+  .plot {
+    grid-column: 5/9;
+    grid-row: 1;
+    text-align: left;
+    color: var(--primary);
+    font-size: 0.9em;
+    background: rgba(128,128,128, 0.1);
+    padding: 0.6em 3em 0.6em 3em;
+  }
+
+
+  .add {
+    font-size: 1.2em;
+  }
+
+  .details {
+    grid-column: 1/5;
+    grid-row: 2;
+    text-align: left;
+    background: rgba(128,128,128, 0.1);
+    /* padding-bottom: 0.6em; */
+    padding: 0em 1em 0.8em 1em;
+  }
+
+  .ratings {
+    grid-column: 5/9;
+    text-align: center;
+    background: rgba(128,128,128, 0.1);
+    padding-bottom: 0.6em;
+  }
+
+
+  .awards {
+    grid-column: 5/9;
+    grid-row: 3;
+    text-align: center;
+    background: rgba(128,128,128, 0.1);
+    padding-bottom: 0.6em;
+  }
+
+  .cast-creators {
+    grid-column: 1/5;
+    grid-row: 3;
+    text-align: left;
+    background: rgba(128,128,128, 0.1);
+    /* padding-bottom: 0.6em; */
+    padding: 0em 1em 0.8em 1em;
+  }
+
+
+  .poster img {
+    padding: 0.6em 0.4em 0.6em 0.4em;
+    align-self: flex-start;
+  }
+
+  #movieDetails {
+    padding-top: 1em;
+  }
+
+  .title {
+    margin-top: 0;
+    padding-top: 0.7em;
+    margin-bottom: 0;
+    padding-bottom: 0.7em;
+    color: var(--primary);
+    font-size: 1.3em;
+  }
+
+  .details-list {
+    text-align: left;
+    padding-left: 0.4em;
+    font-size: 0.9em;
+  }
+
+  .detail-fields {
+    color:#7986cb;
+    font-weight: bold;
+  }
+
+  .awards li {
+    padding: 0 0.4em 0 0.4em;
+  }
+
+ 
+}
+/* ----------------------- END OF STYLE FOR LAPTOP --------------------------------------- */
+/* --------------------------------------------------------------------------------- */

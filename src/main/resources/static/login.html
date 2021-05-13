@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cinema Guide</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+  </head>
+  <body>
+
+  <div class="wrapper">
+    <nav class="navbar container">
+      <div><a class="logo" onclick="location.href='/movies'">Cinema<marked class="logo-gui">Guide</marked></a></div>
+      <ul>
+        <li><a class="bookmarks" id="bookmarkButton" ><img src="images/icons8-heart-32-2.png" onclick="myBookmarks()" onmouseover="rollover(this)" onmouseout="mouseaway(this)"></a></li>
+        <li><a class="login-register-btn" id="sign-in-btn" onclick="signin_btn_Click()"></a></li>
+      </ul>
+    </nav>
+
+    <div class="registration-login">
+      <div class="form-box">
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="signIn()">Sign In</button>
+          <button type="button" class="toggle-btn" onclick="register()">Register</button>
+        </div>
+
+        <form class="input-group" id="signin">
+          <div id="signInError"></div>
+          <input type="email" class="input-field" placeholder="Enter Email" id="loginEmail" required>
+          <input type="password" class="input-field" placeholder="Enter Password" id="loginPassword" required>
+          <button type="submit" class="submit-btn">Sign In</button>
+          <button type="button" class="cancel-btn" onclick="location.href='/movies'">Cancel</button>
+        </form>
+
+        <form class="input-group" id="register">
+          <div id="registerError"></div>
+          <input type="text" class="input-field" placeholder="Enter Name" id="inputName" required>
+          <input type="email" class="input-field" placeholder="Enter Email" id="inputEmail" required>
+          <input type="password" class="input-field" placeholder="Enter Password" id="inputPassword" required>
+          <input type="password" class="input-field" placeholder="Confirm Password" id="confirmPassword" required>
+          <button type="submit" class="submit-btn" id="btn-submit">Register</button>
+          <button type="button" class="cancel-btn" onclick="location.href='/movies'">Cancel</button>
+        </form>
+  
+      </div>
+    </div>
+  </div>
+<script>
+  function rollover(bookmark_icon)
+  {
+    bookmark_icon.src = 'images/icons8-heart-32-3.png';
+  }
+
+  function mouseaway(bookmark_icon)
+  {
+    bookmark_icon.src = 'images/icons8-heart-32-2.png';
+  }
+</script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/main.js"></script>
+  </body>
+</html>
