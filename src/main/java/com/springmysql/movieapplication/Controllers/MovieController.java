@@ -15,7 +15,7 @@ public class MovieController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping({"/movies"})
+    @GetMapping({"/movie"})
     public String index() {
         return "index.html";
     }

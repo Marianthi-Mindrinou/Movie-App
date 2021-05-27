@@ -67,7 +67,7 @@ public class AjaxController {
         return "User already exists!";
     }
 
-    @RequestMapping(value = "/addBookmarks")
+    @PostMapping(value = "/bookmarks")
     public String addBookmarks(@RequestBody UserMovieDTO userMovieDTO)  throws ResourceNotFoundException {
 
         String imdbID = userMovieDTO.getImdbId();
@@ -106,11 +106,11 @@ public class AjaxController {
         return "404: User not found!";
     }
 
-    @RequestMapping(value = "/showBookmarks")
-    public String showBookmarks(@RequestBody UserEmailDTO userData)  throws ResourceNotFoundException {
+    @GetMapping(value = "/bookmarks")
+    public String showBookmarks(@RequestParam String userEmail)  throws ResourceNotFoundException {
 
         List<User> users = (List<User>) userRepository.findAll();
-        String userEmail = userData.getUserEmail();
+        //String userEmail = userData.getUserEmail();
         Integer userId = 0;
         boolean foundUser= false;
         Set<Movie> likedMovies = null ;
