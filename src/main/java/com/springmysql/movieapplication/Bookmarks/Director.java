@@ -18,14 +18,18 @@ public class Director {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "directors", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany(fetch =  FetchType.LAZY,cascade = CascadeType.ALL )
+    @JoinTable(
+            name = "movie_directors",
+            joinColumns = @JoinColumn(name = "director_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Set<Movie> movies = new HashSet<>();
+
 
     public Director() {
     }
 
-    public Director(Integer id, String name) {
-        this.id = id;
+    public Director(String name) {
         this.name = name;
     }
 

@@ -67,7 +67,7 @@ function getMovies(item, index) {
                 </ul>
                 <a onclick="chosenMovie('${movie.imdbID}')" class="button">View More</a>
                  <br>
-                 <button class="button" id="add-bookmark-btn-search" onclick="addBookmark('${movie.imdbID}')"><marked id="add">+</marked> Add to Bookmarks</button>
+                 <button class="button" id="add-bookmark-btn-search" onclick="addBookmark('${movie.imdbID}', '${movie.Director}')"><marked id="add">+</marked> Add to Bookmarks</button>
                 </div>
             `;
                 $('#movies').html(movieInfo);
@@ -85,6 +85,7 @@ function getMovies(item, index) {
 function chosenMovie(id){
 
     var url = './movie.html?id=' + encodeURIComponent(id);
+    window.location.href = url;
     document.location.href = url;
     return false;
 }
@@ -219,7 +220,7 @@ function checkUser(){
                 if(response === "Authenticated User") {
                     loginError.innerHTML = "Account successfully authenticated";
                     setTimeout(()=>{sessionStorage.setItem('userEmail', loginFields["email"]);
-                        window.location.href='/movies';},1500);
+                        window.location.href='/movie';},1500);
                 } else {
                     loginError.innerHTML = "Invalid login credentials!";
                 }
@@ -266,7 +267,7 @@ function searchViaAjax() {
             $.ajax({
                 type : "POST",
                 contentType : "application/json",
-                url : "registration",
+                url : "register",
                 data : JSON.stringify(registrationFields),
                 dataType : 'text',
                 timeout : 100000,
@@ -275,7 +276,7 @@ function searchViaAjax() {
                     if(response === "Successful") {
                         registerError.innerHTML = "Account successfully created";
                         setTimeout(()=>{sessionStorage.setItem('userEmail', registrationFields["email"]);
-                        window.location.href='/movies';},1500);
+                        window.location.href='/movie';},1500);
                     } else {
                         registerError.innerHTML = "This email  is used by another account!";
                     }
@@ -306,14 +307,15 @@ function isEmpty(str) {
 function signin_btn_Click() {
     var userEmail = sessionStorage.getItem('userEmail');
     var signInButton = document.getElementById("sign-in-btn");
+    console.log("User Email: "+ userEmail );
     if (userEmail != null)
     {
         sessionStorage.removeItem('userEmail');
         signInButton.innerHTML = "Sign In|Register";
        /* window.location.replace("index.html");*/
         var form = document.getElementById("signin");
-        form.reset();
-        window.location.href='/movies';
+        //form.reset();
+        window.location.href='/movie';
     }
     else if (userEmail == null)
     {
@@ -337,7 +339,7 @@ window.onload = function() {
 
     /*document.getElementById("sign-in-btn").addEventListener('click', (e) => {
         if (signInButton.innerText == "Sign Out") {
-            window.location.href='/movies';
+            window.location.href='/movie';
         }
 
     });*/
@@ -367,7 +369,7 @@ function signIn() {
     z.style.left = "0";
 }
 
-function addBookmark(imdbId) {
+function addBookmark(imdbId, directorName) {
 
     var messageBookmarks = document.getElementById("messageBookmark");
 
@@ -376,6 +378,7 @@ function addBookmark(imdbId) {
     var userBookmarks = {}
     userBookmarks["email"] = userEmail;
     userBookmarks["imdbId"] = imdbId;
+    userBookmarks["directorName"] = directorName;
     console.log(userBookmarks);
     if (userEmail != null)
     {
@@ -427,8 +430,8 @@ function myBookmarks() {
             timeout : 100000,
             success : function(response) {
                 console.log("SUCCESS: ", response);
-                search.style.display = "none";
-                bookmark.style.display="block";
+                //search.style.display = "none";
+                //bookmark.style.display="block";
                 storeBookmarks(response);
                 setTimeout(()=>{},2500);
             },

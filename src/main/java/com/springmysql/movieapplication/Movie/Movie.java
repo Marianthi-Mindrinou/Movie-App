@@ -16,11 +16,7 @@ public class Movie {
     @ManyToMany(mappedBy = "likedMovies", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<User> user = new HashSet<>();
 
-    @ManyToMany(fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "movie_directors",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "director_id"))
+    @ManyToMany(mappedBy = "movies", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Director> directors = new HashSet<>();
 
     public Movie() {

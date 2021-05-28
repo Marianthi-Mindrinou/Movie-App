@@ -25,6 +25,11 @@ public class MovieController {
         return "login.html";
     }
 
+    @GetMapping({"/bookmark"})
+    public String bookmark() {
+        return "bookmarks.html";
+    }
+
     @GetMapping({"/movies/{id}"})
     public String movie(@PathVariable(value = "id") String movieId) {
         return "movie.html";

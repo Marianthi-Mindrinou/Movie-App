@@ -4,13 +4,16 @@ public class UserMovieDTO {
 
     private String email;
     private String imdbId;
+    private String directorName;
+
 
     public UserMovieDTO() {
     }
 
-    public UserMovieDTO(String email, String imdbId) {
+    public UserMovieDTO(String email, String imdbId, String directorName) {
         this.email = email;
         this.imdbId = imdbId;
+        this.directorName = directorName;
     }
 
     public String getEmail() {
@@ -27,5 +30,13 @@ public class UserMovieDTO {
 
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
+    }
+
+    public String getDirectorName() {
+        return directorName;
+    }
+
+    public void setDirectorName(String directorName) {
+        this.directorName = directorName;
     }
 }

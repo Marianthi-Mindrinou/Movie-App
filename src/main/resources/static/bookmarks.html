@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema Guide</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrapper">
+    <nav class="navbar container">
+        <div><a class="logo" onclick="location.href='/movie'">Cinema<marked class="logo-gui">Guide</marked></a></div>
+        <ul>
+            <li><a class="bookmarks" id="bookmarkButton" onclick="location.href='/bookmark'"><img src="images/icons8-heart-32-2.png" onclick="myBookmarks()" onmouseover="rollover(this)" onmouseout="mouseaway(this)"></a></li>
+            <li><a class="login-register-btn" id="sign-in-btn" onclick="signin_btn_Click()"></a></li>
+        </ul>
+    </nav>
+
+    <div class="searchBar" id="search">
+        <h3 id="bookmarksHeader">My Bookmarks</h3>
+        <form id="searchForm">
+            <input type="text" class="form-control" id="searchText" placeholder="Search...">
+        </form>
+    </div>
+
+    <div id="movies" class="container"></div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/main.js"></script>
+<script>myBookmarks();</script>
+</body>
+</html>
