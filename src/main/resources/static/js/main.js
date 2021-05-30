@@ -67,7 +67,7 @@ function getMovies(item, index) {
                 </ul>
                 <a onclick="chosenMovie('${movie.imdbID}')" class="button">View More</a>
                  <br>
-                 <button class="button" id="add-bookmark-btn-search" onclick="addBookmark('${movie.imdbID}', '${movie.Director}')"><marked id="add">+</marked> Add to Bookmarks</button>
+                 <button class="button" id="add-bookmark-btn-search" onclick="addBookmark('${movie.imdbID}', '${movie.Director}', '${movie.Writer}')"><marked id="add">+</marked> Add to Bookmarks</button>
                 </div>
             `;
                 $('#movies').html(movieInfo);
@@ -83,23 +83,17 @@ function getMovies(item, index) {
 /*----Redirecting the user to movie.html----*/
 /*----Storing the id of the movie in the query parameter----*/
 function chosenMovie(id){
-
-    var url = './movie.html?id=' + encodeURIComponent(id);
+    sessionStorage.setItem('movieId', id);
+    var url = './movie?id=' + id;
     window.location.href = url;
-    document.location.href = url;
+    //document.location.href = url;
     return false;
 }
 
 /*----Api call for the movie selected by the user----*/
 function getMovie(){
 
-    //getting the id of the movie by the query parameter of the URI
-    var url = document.location.href,
-        params = url.split('?')[1].split('&'),
-        id, tmp;
-    tmp = params[0].split('=');
-    id = tmp[1];
-
+    let id = sessionStorage.getItem('movieId');
     const request = new XMLHttpRequest();
     request.responseType = 'json';
 
@@ -141,8 +135,10 @@ function getMovie(){
                         ${movie.Plot}
                         <hr>
                         <a href="http://imdb.com/title/${movie.imdbID}" target="_blank" class="button">IMDB Page</a>
+                      
+                        <button class="button" id="back-to-search-btn" onclick="location.href='/movies'">Go Back To Search</button>
                         <br>
-                        <button class="button" id="back-to-search-btn" onclick="document.location='index.html'">Go Back To Search</button>
+                        <button class="button" id="add-bookmark-btn-search" onclick="addBookmark('${movie.imdbID}', '${movie.Director}', '${movie.Writer}')"><marked id="add">+</marked> Add to Bookmarks</button>
                         
                     </div>
 
@@ -220,7 +216,7 @@ function checkUser(){
                 if(response === "Authenticated User") {
                     loginError.innerHTML = "Account successfully authenticated";
                     setTimeout(()=>{sessionStorage.setItem('userEmail', loginFields["email"]);
-                        window.location.href='/movie';},1500);
+                        window.location.href='/movies';},1500);
                 } else {
                     loginError.innerHTML = "Invalid login credentials!";
                 }
@@ -276,7 +272,7 @@ function searchViaAjax() {
                     if(response === "Successful") {
                         registerError.innerHTML = "Account successfully created";
                         setTimeout(()=>{sessionStorage.setItem('userEmail', registrationFields["email"]);
-                            window.location.href='/movie';},1500);
+                            window.location.href='/movies';},1500);
                     } else {
                         registerError.innerHTML = "This email  is used by another account!";
                     }
@@ -315,7 +311,7 @@ function signin_btn_Click() {
         /* window.location.replace("index.html");*/
         var form = document.getElementById("signin");
         //form.reset();
-        window.location.href='/movie';
+        window.location.href='/movies';
     }
     else if (userEmail == null)
     {
@@ -339,7 +335,7 @@ window.onload = function() {
 
     /*document.getElementById("sign-in-btn").addEventListener('click', (e) => {
         if (signInButton.innerText == "Sign Out") {
-            window.location.href='/movie';
+            window.location.href='/movies';
         }
 
     });*/
@@ -369,7 +365,7 @@ function signIn() {
     z.style.left = "0";
 }
 
-function addBookmark(imdbId, directorName) {
+function addBookmark(imdbId, directorName, writerName) {
 
     var messageBookmarks = document.getElementById("messageBookmark");
 
@@ -379,6 +375,7 @@ function addBookmark(imdbId, directorName) {
     userBookmarks["email"] = userEmail;
     userBookmarks["imdbId"] = imdbId;
     userBookmarks["directorName"] = directorName;
+    userBookmarks["writerName"] = writerName;
     console.log(userBookmarks);
     if (userEmail != null)
     {
@@ -485,8 +482,7 @@ function getBookmark(id, elementId) {
                           <br>
                           <li class="detail"><marked class="detail-fields" >Plot:</marked> ${plot}</li>
                        </ul>
-                        <a onclick="movieSelected('${movie.imdbID}')" class="button" href="/movie.html?id=${movie.imdbID}">View More</a>
-                        
+                        <a onclick="chosenMovie('${movie.imdbID}')" class="button">View More</a>
                     </div>
                   `;
             $(elementId).html( bookmarkOutput );

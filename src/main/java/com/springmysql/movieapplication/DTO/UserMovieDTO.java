@@ -5,15 +5,17 @@ public class UserMovieDTO {
     private String email;
     private String imdbId;
     private String directorName;
+    private String writerName;
 
 
     public UserMovieDTO() {
     }
 
-    public UserMovieDTO(String email, String imdbId, String directorName) {
+    public UserMovieDTO(String email, String imdbId, String directorName, String writerName) {
         this.email = email;
         this.imdbId = imdbId;
         this.directorName = directorName;
+        this.writerName = writerName;
     }
 
     public String getEmail() {
@@ -39,4 +41,14 @@ public class UserMovieDTO {
     public void setDirectorName(String directorName) {
         this.directorName = directorName;
     }
+
+    public String getWriterName() {
+        return writerName;
+    }
+
+    public void setWriterName(String writerName) {
+        this.writerName = writerName;
+    }
+
+
 }

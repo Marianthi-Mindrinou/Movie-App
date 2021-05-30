@@ -15,7 +15,7 @@ public class MovieController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping({"/movie"})
+    @GetMapping({"/movies"})
     public String index() {
         return "index.html";
     }
@@ -30,13 +30,16 @@ public class MovieController {
         return "bookmarks.html";
     }
 
-    @GetMapping({"/director1"})
-    public String searchDirector() {
-        return "searchdirector.html";
+    @GetMapping(value="/search", params = "director")
+    public String searchDirector(@RequestParam String director) {
+        return "searchBookmark.html";
     }
-
-    @GetMapping({"/movies/{id}"})
-    public String movie(@PathVariable(value = "id") String movieId) {
+    @GetMapping(value="/search", params = "writer")
+    public String searchWriter(@RequestParam String writer) {
+        return "searchBookmark.html";
+    }
+    @GetMapping({"/movie"})
+    public String movie(@RequestParam String id) {
         return "movie.html";
     }
 
