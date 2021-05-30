@@ -11,8 +11,11 @@ import com.springmysql.movieapplication.User.UserRepository;
 import com.springmysql.movieapplication.Exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -77,9 +80,7 @@ public class AjaxController {
         String imdbID = userMovieDTO.getImdbId();
         String userEmail = userMovieDTO.getEmail();
         String directorName = userMovieDTO.getDirectorName();
-
         System.out.println("director name: "+ directorName);
-
 
         List<User> users = (List<User>) userRepository.findAll();
         Integer userId = 0;
@@ -107,20 +108,33 @@ public class AjaxController {
             if(!moviefound) {
                 Movie movieUser = new Movie(imdbID);
                 user.getLikedMovies().add(movieUser);
+
                 boolean dirFound = false;
+                String[] movieDirectors = directorName.split(",");
+                Set<String> directorList = new HashSet<>();
+                for (String name : movieDirectors) {
+                    String clearName = name.split("\\(")[0].trim();
+                    System.out.println("Director Name: "+ clearName);
+                    directorList.add(clearName);
+                }
+
                 List<Director> dirs = (List<Director>) directorRepository.findAll();
-                for (Director dir:dirs) {
-                    if (dir.getName().toLowerCase().trim().equals(directorName.toLowerCase().trim())) {
-                        dirFound = true;
-                        dir.getMovies().add(movieUser);
-                        directorRepository.save(dir);
+
+                for (String name:directorList) {
+                    for (Director dir:dirs) {
+                        if (dir.getName().toLowerCase().trim().equals(name.toLowerCase().trim())) {
+                            dirFound = true;
+                            dir.getMovies().add(movieUser);
+                            directorRepository.save(dir);
+                        }
+                    }
+                    if (!dirFound){
+                        Director director = new Director(name);
+                        director.getMovies().add(movieUser);
+                        directorRepository.save(director);
                     }
                 }
-                if (!dirFound){
-                    Director director = new Director(directorName);
-                    director.getMovies().add(movieUser);
-                    directorRepository.save(director);
-                }
+
                 userRepository.save(user);
                 return "Successful";
             }
@@ -151,6 +165,53 @@ public class AjaxController {
             for (Movie movie:likedMovies) {
                 result +=  movie.getImdbId() + ",";
             }
+            return result;
+        }
+        return "not done";
+    }
+
+    @GetMapping(value = "/search")
+    public String searchBookmarks(@RequestParam String searchedName,@RequestParam String userEmail,@RequestParam String selectValue)  throws ResourceNotFoundException {
+        System.out.println("Name: "+searchedName);
+        System.out.println("Email: "+userEmail);
+        List<User> users = (List<User>) userRepository.findAll();
+        Integer userId = 0;
+        boolean foundUser= false;
+        Set<Movie> likedMovies = null ;
+        for (User appuser: users) {
+            if(userEmail.equals(appuser.getEmail()))  {
+                userId = appuser.getId();
+                foundUser = true;
+            }
+        }
+        if (foundUser) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found for this email :: " + userEmail));
+            likedMovies = user.getLikedMovies();
+
+            String result="";
+            if (selectValue.equals("director")) {
+                Set<Director> directors;
+
+                for (Movie mv:likedMovies) {
+                    directors = mv.getDirectors();
+                    for (Director dir: directors) {
+                        if (dir.getName().trim().toLowerCase().equals(searchedName.trim().toLowerCase())) {
+                            System.out.println("Movie: "+mv.getImdbId());
+                            System.out.println("Name: "+dir.getName());
+                            System.out.println("Name: "+searchedName);
+                            result +=  mv.getImdbId() + ",";
+                        }
+                    }
+                }
+            }
+
+            /*
+            String result="";
+            for (Movie movie:likedMovies) {
+                result +=  movie.getImdbId() + ",";
+            }*/
+            System.out.println("Result: "+result);
             return result;
         }
         return "not done";

@@ -276,7 +276,7 @@ function searchViaAjax() {
                     if(response === "Successful") {
                         registerError.innerHTML = "Account successfully created";
                         setTimeout(()=>{sessionStorage.setItem('userEmail', registrationFields["email"]);
-                        window.location.href='/movie';},1500);
+                            window.location.href='/movie';},1500);
                     } else {
                         registerError.innerHTML = "This email  is used by another account!";
                     }
@@ -312,7 +312,7 @@ function signin_btn_Click() {
     {
         sessionStorage.removeItem('userEmail');
         signInButton.innerHTML = "Sign In|Register";
-       /* window.location.replace("index.html");*/
+        /* window.location.replace("index.html");*/
         var form = document.getElementById("signin");
         //form.reset();
         window.location.href='/movie';
@@ -432,7 +432,8 @@ function myBookmarks() {
                 console.log("SUCCESS: ", response);
                 //search.style.display = "none";
                 //bookmark.style.display="block";
-                storeBookmarks(response);
+                let elementId ="#movies";
+                storeBookmarks(response, elementId);
                 setTimeout(()=>{},2500);
             },
             error : function(e) {
@@ -450,19 +451,20 @@ function myBookmarks() {
     }
 }
 
-function storeBookmarks(response) {
+function storeBookmarks(response, elementId) {
     let ids = response.split(",");
 
     for (var i=0; i< ids.length-1; i++) {
         sessionStorage.setItem('imdbid', ids[i]);
-        getBookmark(ids[i]);
+        getBookmark(ids[i],elementId);
+
     }
     console.log(response);
 }
 
 let bookmarkOutput = '';
 
-function getBookmark(id) {
+function getBookmark(id, elementId) {
     var imdbID = sessionStorage.getItem('imdbid');
     console.log("imdbid :"+ imdbID);
 
@@ -487,7 +489,7 @@ function getBookmark(id) {
                         
                     </div>
                   `;
-            $( "#movies" ).html( bookmarkOutput );
+            $(elementId).html( bookmarkOutput );
         },
         error: function() {
             console.log("error");
@@ -496,3 +498,38 @@ function getBookmark(id) {
     });
 }
 
+
+function searchViaName() {
+
+    //document.getElementById("movies").innerHTML = "";
+    //document.getElementById('divStatus').innerHTML = "";
+    //let searchText = document.getElementById("searchText").value;
+    //sessionStorage.setItem('searchText', searchText);
+    var selectValue = sessionStorage.getItem('selectValue');
+    var searchedName = sessionStorage.getItem('searchText');
+    var userEmail = sessionStorage.getItem('userEmail');
+    console.log("searchText"+searchedName);
+    if (searchedName != null) {
+        $.ajax({
+            type : "GET",
+            contentType : "application/json",
+            url : "/search?searchedName="+searchedName+"&userEmail="+userEmail+"&selectValue="+selectValue,
+            dataType : 'text',
+            timeout : 100000,
+            success : function(response) {
+                console.log("SUCCESS: ", response);
+                //window.location.href='/director1';
+                let elementId ="#movies";
+                storeBookmarks(response, elementId);
+                setTimeout(()=>{},2500);
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+            },
+            done : function(e) {
+                console.log("DONE");
+                enableSearchButton(true);
+            }
+        });
+    }
+}

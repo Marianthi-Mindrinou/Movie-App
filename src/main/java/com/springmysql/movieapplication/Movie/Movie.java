@@ -1,6 +1,7 @@
 package com.springmysql.movieapplication.Movie;
 
 import com.springmysql.movieapplication.Bookmarks.Director;
+import com.springmysql.movieapplication.Bookmarks.Writer;
 import com.springmysql.movieapplication.User.User;
 
 import javax.persistence.*;
@@ -18,6 +19,9 @@ public class Movie {
 
     @ManyToMany(mappedBy = "movies", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Director> directors = new HashSet<>();
+
+    @ManyToMany(mappedBy = "movies", fetch =  FetchType.LAZY,cascade = CascadeType.ALL)
+    private Set<Writer> writers = new HashSet<>();
 
     public Movie() {
     }
@@ -48,6 +52,14 @@ public class Movie {
 
     public void setDirectors(Set<Director> directors) {
         this.directors = directors;
+    }
+
+    public Set<Writer> getWriters() {
+        return writers;
+    }
+
+    public void setWriters(Set<Writer> writers) {
+        this.writers = writers;
     }
 
     @Override

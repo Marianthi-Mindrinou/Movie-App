@@ -30,6 +30,11 @@ public class MovieController {
         return "bookmarks.html";
     }
 
+    @GetMapping({"/director1"})
+    public String searchDirector() {
+        return "searchdirector.html";
+    }
+
     @GetMapping({"/movies/{id}"})
     public String movie(@PathVariable(value = "id") String movieId) {
         return "movie.html";
